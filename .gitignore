@@ -31,3 +31,8 @@ dist-ssr
 
 # Build files
 build
+.next/
+out/
+
+# Next.js
+.vercel
