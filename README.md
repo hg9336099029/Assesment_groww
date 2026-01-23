@@ -10,26 +10,26 @@ A customizable finance dashboard built with **Next.js**, **Redux Toolkit**, and 
 ## ✨ Features
 
 ### Widget Management
-- 🎨 **Add Custom Widgets** - Connect to any financial API
-- 📊 **Multiple Display Modes** - Card, Table, or Chart views
-- 🔄 **Real-time Data** - Configurable auto-refresh intervals
-- 💾 **Persistence** - Widgets saved to localStorage
+- 🎨 **Add Custom Widgets** – Connect to any financial API
+- 📊 **Multiple Display Modes** – Card, Table, or Chart views
+- 🔄 **Real-time Data** – Configurable auto-refresh intervals
+- 💾 **Persistence** – Widgets saved to `localStorage`
 
 ### Display Modes
-- **Card View** - Clean display of key metrics with smart formatting
-- **Table View** - Searchable, sortable, paginated data tables
-- **Chart View** - Line and bar charts with Chart.js
+- **Card View** – Clean display of key metrics with smart formatting
+- **Table View** – Searchable, sortable, paginated data tables
+- **Chart View** – Line and bar charts with Chart.js
 
 ### UI/UX
-- 🌓 **Dark/Light Theme** - Toggle between themes
-- 📱 **Responsive Design** - Works on all devices
-- ⚡ **Fast Performance** - Optimized with Next.js
-- 🎭 **Smooth Animations** - Tailwind CSS animations
+- 🌓 **Dark/Light Theme** – Toggle between themes using explicit JS logic (`isLight ? ... : ...`)
+- 📱 **Responsive Design** – Works on all devices
+- ⚡ **Fast Performance** – Optimized with Next.js
+- 🎭 **Smooth Animations** – Tailwind CSS animations
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
@@ -52,7 +52,6 @@ http://localhost:3000
 ## 📖 Usage
 
 ### Adding a Widget
-
 1. Click the **"Add Widget"** button
 2. Enter widget details:
    - Widget name
@@ -87,7 +86,7 @@ https://jsonplaceholder.typicode.com/users
 
 ## 📁 Project Structure
 
-```
+```text
 assignment_groww/
 ├── app/
 │   ├── layout.jsx          # Root layout with Redux Provider
@@ -124,16 +123,16 @@ assignment_groww/
 - Automatic currency formatting
 - Percentage display
 - Number formatting with commas
-- Color-coded values (green for positive, red for negative)
+- Color‑coded values (green for positive, red for negative)
 
 ### Table Features
-- Real-time search across all fields
-- Click-to-sort columns (ascending/descending)
+- Real‑time search across all fields
+- Click‑to‑sort columns (ascending/descending)
 - Pagination with customizable items per page
 - Row count display
 
 ### Chart Features
-- Line charts for time-series data
+- Line charts for time‑series data
 - Bar charts for comparisons
 - Dark mode support
 - Responsive sizing
@@ -148,7 +147,6 @@ assignment_groww/
 ## 🔧 Configuration
 
 ### Path Aliases
-
 The project uses path aliases for clean imports:
 
 ```javascript
@@ -179,6 +177,7 @@ module.exports = {
 ```
 
 Custom theme defined in `app/globals.css`:
+
 ```css
 @theme {
   --color-primary: hsl(160 84% 39%);
@@ -238,10 +237,10 @@ NEXT_PUBLIC_DEFAULT_REFRESH_INTERVAL=60
 
 ## 🎯 Roadmap
 
-- [ ] Drag-and-drop widget reordering
+- [ ] Drag‑and‑drop widget reordering
 - [ ] Widget templates (Crypto, Stocks, Forex)
 - [ ] Export/import dashboard configuration
-- [ ] WebSocket support for real-time data
+- [ ] WebSocket support for real‑time data
 - [ ] Backend API for data persistence
 - [ ] User authentication
 - [ ] Multiple dashboards
@@ -256,14 +255,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 👨‍💻 Built With
 
-- **Next.js** - React framework for production
-- **Redux Toolkit** - State management
-- **Tailwind CSS v4** - Utility-first CSS
-- **Chart.js** - Data visualization
-- **Axios** - HTTP client
+- **Next.js** – React framework for production
+- **Redux Toolkit** – State management
+- **Tailwind CSS v4** – Utility‑first CSS
+- **Chart.js** – Data visualization
+- **Axios** – HTTP client
 
 ---
 
-**Note**: This is a frontend-only application. All data is fetched directly from public APIs and stored in browser localStorage.
+**Note**: This is a frontend‑only application. All data is fetched directly from public APIs and stored in browser `localStorage`.
 
 **Server**: http://localhost:3000
