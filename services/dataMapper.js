@@ -125,10 +125,83 @@ export const handleNestedData = (obj, path) => {
     return parseNestedField(obj, path)
 }
 
+export const LABEL_MAPPING = {
+    // Generic / Common
+    c: 'Current Price',
+    d: 'Change',
+    dp: 'Change %',
+    h: 'High',
+    l: 'Low',
+    o: 'Open',
+    pc: 'Previous Close',
+    t: 'Timestamp',
+    v: 'Volume',
+    mc: 'Market Cap',
+    pe: 'P/E Ratio',
+    div: 'Dividend',
+    yld: 'Yield',
+
+    // Explicit names (if they come through)
+    current_price: 'Current Price',
+    market_cap: 'Market Cap',
+    high_24h: 'High (24h)',
+    low_24h: 'Low (24h)',
+    price_change_percentage_24h: 'Change % (24h)',
+    market_cap_rank: 'Rank',
+    total_volume: 'Volume',
+    circulating_supply: 'Circulating Supply',
+    total_supply: 'Total Supply',
+    max_supply: 'Max Supply',
+    ath: 'All Time High',
+    ath_change_percentage: 'ATH Change %',
+    atl: 'All Time Low',
+    atl_change_percentage: 'ATL Change %',
+    last_updated: 'Last Updated',
+    symbol: 'Symbol',
+    name: 'Name',
+    image: 'Image',
+    roi: 'ROI',
+}
+
+/**
+ * Get human readable label for a field key
+ * @param {string} key - Field key (e.g. 'c', 'dp')
+ * @returns {string} Human readable label
+ */
+export const getFieldLabel = (key) => {
+    if (!key) return ''
+    const lowerKey = key.toLowerCase()
+
+    // 1. Check explicit mapping first
+    if (LABEL_MAPPING[lowerKey]) {
+        return LABEL_MAPPING[lowerKey]
+    }
+
+    // 2. Dynamic cleaning: strip common prefixes
+    let cleanKey = key
+        .replace(/^data\.rates\./i, '')
+        .replace(/^data\./i, '')
+        .replace(/^rates\./i, '')
+
+    // 3. Replace snake_case with spaces
+    cleanKey = cleanKey.replace(/_/g, ' ')
+
+    // 4. Special case: short symbols (3-5 chars) -> Uppercase
+    if (cleanKey.length <= 5 && !cleanKey.includes(' ')) {
+        return cleanKey.toUpperCase()
+    }
+
+    // 5. Title Case for longer sentences
+    return cleanKey.split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+}
+
 export default {
     parseJsonStructure,
     extractFields,
     mapFieldsToDisplay,
     normalizeApiResponse,
     handleNestedData,
+    getFieldLabel,
 }

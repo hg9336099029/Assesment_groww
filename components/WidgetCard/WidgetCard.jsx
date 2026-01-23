@@ -11,7 +11,7 @@ import CardView from '../CardView/CardView'
 import TableView from '../TableView/TableView'
 import ChartView from '../ChartView/ChartView'
 
-function WidgetCard({ widget }) {
+function WidgetCard({ widget, dragHandleProps }) {
     const dispatch = useDispatch()
 
     const fetchData = useCallback(async () => {
@@ -49,11 +49,12 @@ function WidgetCard({ widget }) {
     }
 
     return (
-        <div className="bg-dark-card rounded-lg border border-dark-border overflow-hidden hover:border-dark-hover transition-colors duration-200">
+        <div className="bg-white dark:bg-dark-card rounded-lg shadow-sm border border-gray-200 dark:border-dark-border overflow-hidden hover:border-gray-300 dark:hover:border-dark-hover transition-colors duration-200">
             <WidgetHeader
                 widget={widget}
                 onRefresh={handleRefresh}
                 onDelete={handleDelete}
+                dragHandleProps={dragHandleProps}
             />
 
             <div className="p-4">
@@ -64,8 +65,8 @@ function WidgetCard({ widget }) {
                 )}
 
                 {widget.error && (
-                    <div className="bg-red-900/20 border border-red-800/50 rounded-lg p-4">
-                        <p className="text-sm text-red-300 whitespace-pre-wrap">
+                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/50 rounded-lg p-4">
+                        <p className="text-sm text-red-700 dark:text-red-300 whitespace-pre-wrap">
                             {widget.error}
                         </p>
                     </div>
@@ -85,7 +86,7 @@ function WidgetCard({ widget }) {
                         )}
                         {widget.displayMode === 'chart' && (
                             <ChartView
-                                data={widget.data}
+                                data={widget.history || widget.data}
                                 fields={widget.selectedFields}
                                 chartType={widget.chartType || 'line'}
                             />

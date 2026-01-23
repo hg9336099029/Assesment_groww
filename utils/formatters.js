@@ -7,11 +7,20 @@
 export const formatCurrency = (value, currency = 'USD') => {
     if (value === null || value === undefined || isNaN(value)) return '-'
 
+    // Handle small values (crypto)
+    let maxDigits = 2
+    if (value > 0 && value < 1) {
+        maxDigits = 6
+    }
+    if (value > 0 && value < 0.0001) {
+        maxDigits = 8
+    }
+
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: currency,
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        maximumFractionDigits: maxDigits,
     }).format(value)
 }
 
@@ -36,9 +45,19 @@ export const formatPercentage = (value, decimals = 2) => {
 export const formatNumber = (value, decimals = 2) => {
     if (value === null || value === undefined || isNaN(value)) return '-'
 
+    // Handle small values
+    let maxDigits = decimals
+    const absValue = Math.abs(value)
+    if (absValue > 0 && absValue < 1) {
+        maxDigits = Math.max(decimals, 6)
+    }
+    if (absValue > 0 && absValue < 0.0001) {
+        maxDigits = Math.max(decimals, 8)
+    }
+
     return new Intl.NumberFormat('en-US', {
         minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals,
+        maximumFractionDigits: maxDigits,
     }).format(value)
 }
 

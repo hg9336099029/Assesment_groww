@@ -14,10 +14,10 @@ module.exports = {
                     light: 'hsl(160, 84%, 50%)',
                 },
                 dark: {
-                    bg: '#0f172a',      // Deep navy background
-                    card: '#1e293b',    // Card background
-                    border: '#334155',  // Border color
-                    hover: '#334155',   // Hover state
+                    bg: 'var(--color-dark-bg)',
+                    card: 'var(--color-dark-card)',
+                    border: 'var(--color-dark-border)',
+                    hover: 'var(--color-dark-hover)',
                 },
             },
             fontFamily: {

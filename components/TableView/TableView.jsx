@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { formatNumber } from '@utils/formatters'
+import { getFieldLabel } from '@services/dataMapper'
 
 function TableView({ data, fields, showArraysOnly }) {
     const [searchTerm, setSearchTerm] = useState('')
@@ -70,7 +71,13 @@ function TableView({ data, fields, showArraysOnly }) {
 
     const formatValue = (value) => {
         if (value === null || value === undefined) return '-'
-        if (typeof value === 'number') return formatNumber(value)
+
+        let numValue = value
+        if (typeof value === 'string' && !isNaN(Number(value)) && value.trim() !== '') {
+            numValue = Number(value)
+        }
+
+        if (typeof numValue === 'number') return formatNumber(numValue)
         return String(value)
     }
 
@@ -86,7 +93,7 @@ function TableView({ data, fields, showArraysOnly }) {
                         setSearchTerm(e.target.value)
                         setCurrentPage(1)
                     }}
-                    className="flex-1 px-3 py-2 bg-dark-hover border border-dark-border rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="flex-1 px-3 py-2 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <div className="text-sm text-gray-400">
                     {sortedData.length} of {tableData.length} items
@@ -97,15 +104,15 @@ function TableView({ data, fields, showArraysOnly }) {
             <div className="overflow-x-auto scrollbar-thin">
                 <table className="w-full text-sm">
                     <thead>
-                        <tr className="border-b border-dark-border">
+                        <tr className="border-b border-gray-200 dark:border-dark-border">
                             {fields.map(field => (
                                 <th
                                     key={field}
                                     onClick={() => handleSort(field)}
-                                    className="px-3 py-2 text-left font-medium text-gray-300 cursor-pointer hover:bg-dark-hover transition-colors"
+                                    className="px-3 py-2 text-left font-medium text-gray-600 dark:text-gray-300 cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors"
                                 >
                                     <div className="flex items-center gap-2">
-                                        <span className="truncate">{field}</span>
+                                        <span className="truncate">{getFieldLabel(field)}</span>
                                         {sortField === field && (
                                             <span className="text-primary">
                                                 {sortDirection === 'asc' ? '↑' : '↓'}
@@ -120,10 +127,10 @@ function TableView({ data, fields, showArraysOnly }) {
                         {paginatedData.map((row, index) => (
                             <tr
                                 key={index}
-                                className="border-b border-dark-border/50 hover:bg-dark-hover/50 transition-colors"
+                                className="border-b border-gray-200 dark:border-dark-border/50 hover:bg-gray-50 dark:hover:bg-dark-hover/50 transition-colors"
                             >
                                 {fields.map(field => (
-                                    <td key={field} className="px-3 py-2 text-gray-200">
+                                    <td key={field} className="px-3 py-2 text-gray-700 dark:text-gray-200 truncate max-w-xs" title={String(row[field])}>
                                         {formatValue(row[field])}
                                     </td>
                                 ))}
@@ -146,7 +153,7 @@ function TableView({ data, fields, showArraysOnly }) {
                                 setItemsPerPage(Number(e.target.value))
                                 setCurrentPage(1)
                             }}
-                            className="px-2 py-1 bg-dark-hover border border-dark-border rounded text-white"
+                            className="px-2 py-1 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded text-gray-900 dark:text-white"
                         >
                             <option value={5}>5</option>
                             <option value={10}>10</option>
@@ -159,7 +166,7 @@ function TableView({ data, fields, showArraysOnly }) {
                         <button
                             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                             disabled={currentPage === 1}
-                            className="px-3 py-1 bg-dark-hover rounded hover:bg-dark-border disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                            className="px-3 py-1 bg-gray-100 dark:bg-dark-hover rounded hover:bg-gray-200 dark:hover:bg-dark-border disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 dark:text-white"
                         >
                             Previous
                         </button>
@@ -169,7 +176,7 @@ function TableView({ data, fields, showArraysOnly }) {
                         <button
                             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                             disabled={currentPage === totalPages}
-                            className="px-3 py-1 bg-dark-hover rounded hover:bg-dark-border disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                            className="px-3 py-1 bg-gray-100 dark:bg-dark-hover rounded hover:bg-gray-200 dark:hover:bg-dark-border disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 dark:text-white"
                         >
                             Next
                         </button>

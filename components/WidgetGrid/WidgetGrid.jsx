@@ -44,11 +44,12 @@ function SortableWidget({ widget }) {
         <div
             ref={setNodeRef}
             style={style}
-            {...attributes}
-            {...listeners}
             className={widget.displayMode === 'table' ? 'md:col-span-2 lg:col-span-3' : ''}
         >
-            <WidgetCard widget={widget} />
+            <WidgetCard
+                widget={widget}
+                dragHandleProps={{ ...attributes, ...listeners }}
+            />
         </div>
     )
 }
@@ -109,15 +110,15 @@ function WidgetGrid({ widgets }) {
                 </SortableContext>
 
                 {/* Add widget placeholder */}
-                <div className="min-h-[300px] border-2 border-dashed border-dark-border rounded-xl flex items-center justify-center hover:border-primary/50 hover:bg-dark-card/50 transition-all duration-300 group cursor-pointer"
+                <div className="min-h-[300px] border-2 border-dashed border-gray-300 dark:border-dark-border rounded-xl flex items-center justify-center hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-dark-card/50 transition-all duration-300 group cursor-pointer"
                     onClick={handleAddWidget}
                 >
                     <div className="flex flex-col items-center gap-4 p-8 text-gray-500 hover:text-primary transition-colors duration-300">
-                        <div className="w-16 h-16 rounded-full bg-dark-card border border-dark-border flex items-center justify-center text-3xl font-light group-hover:scale-110 group-hover:border-primary/50 transition-all duration-300">
+                        <div className="w-16 h-16 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border flex items-center justify-center text-3xl font-light group-hover:scale-110 group-hover:border-primary/50 transition-all duration-300">
                             +
                         </div>
                         <div className="text-center">
-                            <span className="font-medium text-lg block mb-1 text-gray-300 group-hover:text-primary transition-colors">Add Widget</span>
+                            <span className="font-medium text-lg block mb-1 text-gray-500 dark:text-gray-300 group-hover:text-primary transition-colors">Add Widget</span>
                             <p className="text-sm text-gray-500 group-hover:text-gray-400 transition-colors max-w-[200px]">
                                 Connect to a finance API and create a custom widget
                             </p>

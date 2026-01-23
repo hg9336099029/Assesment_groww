@@ -1,26 +1,49 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Tailwind CSS v4 */
 @import "tailwindcss";
+
+:root {
+  /* Dynamic Theme Variables - Light Mode Defaults */
+  --bg-app: #f1f5f9;
+  --bg-card: #ffffff;
+  --border-color: #cbd5e1;
+  --bg-hover: #e2e8f0;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+}
+
+.dark {
+  /* Dark Mode Overrides */
+  --bg-app: #0f172a;
+  --bg-card: #1e293b;
+  --border-color: #334155;
+  --bg-hover: #334155;
+
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+}
 
 @theme {
   --color-primary: hsl(160, 84%, 39%);
   --color-primary-hover: hsl(160, 84%, 45%);
   --color-primary-light: hsl(160, 84%, 50%);
 
-  --color-dark-bg: #0f172a;
-  --color-dark-card: #1e293b;
-  --color-dark-border: #334155;
-  --color-dark-hover: #334155;
+  /* Map legacy names to dynamic variables */
+  --color-dark-bg: var(--bg-app);
+  --color-dark-card: var(--bg-card);
+  --color-dark-border: var(--border-color);
+  --color-dark-hover: var(--bg-hover);
 
   --font-sans: 'Inter', sans-serif;
 }
 
 /* Base styles */
 body {
-  background-color: var(--color-dark-bg);
-  color: #f1f5f9;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom animations */

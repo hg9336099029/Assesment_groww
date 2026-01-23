@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // Load theme from localStorage
 const loadThemeFromStorage = () => {
+    if (typeof window === 'undefined') return 'dark'
     try {
         const saved = localStorage.getItem('finance-dashboard-theme')
         return saved || 'dark'
@@ -13,6 +14,7 @@ const loadThemeFromStorage = () => {
 const initialState = {
     isModalOpen: false,
     modalType: null,
+    modalProps: null,
     theme: loadThemeFromStorage(),
     sidebarOpen: false,
 }
@@ -23,12 +25,19 @@ const uiSlice = createSlice({
     reducers: {
         openModal: (state, action) => {
             state.isModalOpen = true
-            state.modalType = action.payload || 'addWidget'
+            if (typeof action.payload === 'object' && action.payload.type) {
+                state.modalType = action.payload.type
+                state.modalProps = action.payload.props || null
+            } else {
+                state.modalType = action.payload || 'addWidget'
+                state.modalProps = null
+            }
         },
 
         closeModal: (state) => {
             state.isModalOpen = false
             state.modalType = null
+            state.modalProps = null
         },
 
         toggleTheme: (state) => {
@@ -59,6 +68,7 @@ export const {
 export const selectModalState = (state) => ({
     isOpen: state.ui.isModalOpen,
     type: state.ui.modalType,
+    props: state.ui.modalProps,
 })
 export const selectTheme = (state) => state.ui.theme
 export const selectSidebarOpen = (state) => state.ui.sidebarOpen

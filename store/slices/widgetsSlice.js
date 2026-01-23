@@ -55,6 +55,24 @@ const widgetsSlice = createSlice({
                 widget.lastUpdated = new Date().toISOString()
                 widget.isLoading = false
                 widget.error = null
+
+                // Add history for charts
+                if (widget.displayMode === 'chart') {
+                    if (!widget.history) widget.history = []
+
+                    // Create history entry
+                    const historyEntry = {
+                        timestamp: widget.lastUpdated,
+                        ...((typeof data === 'object' && data !== null && !Array.isArray(data)) ? data : { value: data })
+                    }
+
+                    widget.history.push(historyEntry)
+
+                    // Limit history size to 500 points
+                    if (widget.history.length > 500) {
+                        widget.history.shift()
+                    }
+                }
             }
         },
 
