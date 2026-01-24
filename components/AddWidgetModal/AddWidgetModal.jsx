@@ -148,7 +148,7 @@ function AddWidgetModal() {
                     </h2>
                     <button
                         onClick={handleClose}
-                        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-hover transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-hover transition-colors text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -233,7 +233,7 @@ function AddWidgetModal() {
                                             <div className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-primary transition-colors">
                                                 {template.name}
                                             </div>
-                                            <div className="text-xs text-gray-400 mt-0.5">
+                                            <div className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
                                                 {template.desc}
                                             </div>
                                         </div>
@@ -251,7 +251,8 @@ function AddWidgetModal() {
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 placeholder="e.g., Bitcoin Price Tracker"
-                                className="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                className="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                style={{ color: 'var(--text-main)' }}
                             />
                             {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name}</p>}
                         </div>
@@ -267,7 +268,8 @@ function AddWidgetModal() {
                                         value={formData.apiUrl}
                                         onChange={(e) => setFormData({ ...formData, apiUrl: e.target.value })}
                                         placeholder="e.g., https://api.coinbase.com/v2/exchange-rates?currency=BTC"
-                                        className="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                        className="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                        style={{ color: 'var(--text-main)' }}
                                     />
                                     {/* Support multiple URLs for table aggregation */}
                                     {formData.displayMode === 'table' && (
@@ -282,7 +284,8 @@ function AddWidgetModal() {
                                                             newUrls[idx] = e.target.value
                                                             setFormData({ ...formData, apiUrls: newUrls })
                                                         }}
-                                                        className="w-full px-4 py-2 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-gray-900 dark:text-white text-sm"
+                                                        className="w-full px-4 py-2 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-sm"
+                                                        style={{ color: 'var(--text-main)' }}
                                                     />
                                                     <button
                                                         onClick={() => {
@@ -346,7 +349,8 @@ function AddWidgetModal() {
                                 onChange={(e) => setFormData({ ...formData, refreshInterval: parseInt(e.target.value) })}
                                 min="10"
                                 max="3600"
-                                className="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                className="w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                style={{ color: 'var(--text-main)' }}
                             />
                             {errors.refreshInterval && <p className="mt-1 text-sm text-red-400">{errors.refreshInterval}</p>}
                         </div>
@@ -359,7 +363,7 @@ function AddWidgetModal() {
                                         <h3 className="text-base font-semibold text-gray-900 dark:text-white">
                                             Select Fields to Display
                                         </h3>
-                                        <div className="text-xs text-gray-400">
+                                        <div className="text-xs text-gray-600 dark:text-gray-400">
                                             {formData.selectedFields.length} selected
                                         </div>
                                     </div>
@@ -379,7 +383,7 @@ function AddWidgetModal() {
                                                     onClick={() => setFormData({ ...formData, displayMode: mode.value })}
                                                     className={`p-3 rounded-lg border transition-all text-sm ${formData.displayMode === mode.value
                                                         ? 'border-primary bg-primary/10 text-primary dark:text-white'
-                                                        : 'border-gray-200 dark:border-dark-border hover:border-gray-300 dark:hover:border-dark-hover text-gray-400'
+                                                        : 'border-gray-200 dark:border-dark-border hover:border-gray-300 dark:hover:border-dark-hover text-gray-700 dark:text-gray-400'
                                                         }`}
                                                 >
                                                     <div className="text-lg mb-1">{mode.icon}</div>
@@ -398,12 +402,13 @@ function AddWidgetModal() {
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
                                             placeholder="Search for fields..."
-                                            className="w-full px-3 py-2 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary mb-3"
+                                            className="w-full px-3 py-2 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary mb-3"
+                                            style={{ color: 'var(--text-main)' }}
                                         />
                                     </div>
 
                                     <div className="flex items-center justify-between mb-2">
-                                        <label className="flex items-center gap-2 text-sm text-gray-400">
+                                        <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-400">
                                             <input
                                                 type="checkbox"
                                                 checked={formData.showArraysOnly}
@@ -431,10 +436,10 @@ function AddWidgetModal() {
                                                                 <div className="font-medium text-gray-900 dark:text-white text-sm truncate">
                                                                     {field.path}
                                                                 </div>
-                                                                <div className="text-xs text-gray-500 mt-0.5">
+                                                                <div className="text-xs text-gray-600 dark:text-gray-500 mt-0.5">
                                                                     <span className="text-primary/80">{field.type}</span>
                                                                     <span className="mx-1.5 text-gray-700">|</span>
-                                                                    <span className="text-gray-400">{String(field.sampleValue).substring(0, 40)}</span>
+                                                                    <span className="text-gray-600 dark:text-gray-400">{String(field.sampleValue).substring(0, 40)}</span>
                                                                 </div>
                                                             </div>
                                                             <button
@@ -442,7 +447,7 @@ function AddWidgetModal() {
                                                                 disabled={isSelected}
                                                                 className={`p-1.5 rounded-md transition-colors ${isSelected
                                                                     ? 'text-green-500 cursor-default'
-                                                                    : 'text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-hover'
+                                                                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-hover'
                                                                     }`}
                                                             >
                                                                 {isSelected ? (
@@ -459,7 +464,7 @@ function AddWidgetModal() {
                                                     )
                                                 })}
                                             {availableFields.filter(f => f.path.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
-                                                <p className="text-center text-gray-500 text-sm py-4">No fields found</p>
+                                                <p className="text-center text-gray-600 dark:text-gray-500 text-sm py-4">No fields found</p>
                                             )}
                                         </div>
                                     </div>
@@ -469,7 +474,7 @@ function AddWidgetModal() {
                                         <div className="space-y-2">
                                             {formData.selectedFields.length === 0 ? (
                                                 <div className="p-4 border border-dashed border-gray-300 dark:border-dark-border rounded-lg text-center">
-                                                    <p className="text-sm text-gray-500">No fields selected</p>
+                                                    <p className="text-sm text-gray-600 dark:text-gray-500">No fields selected</p>
                                                 </div>
                                             ) : (
                                                 formData.selectedFields.map(field => (
@@ -478,12 +483,12 @@ function AddWidgetModal() {
                                                         className="flex items-center justify-between p-3 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg group"
                                                     >
                                                         <div className="flex flex-col">
-                                                            <span className="text-xs text-gray-500 mb-0.5">data.field</span>
+                                                            <span className="text-xs text-gray-600 dark:text-gray-500 mb-0.5">data.field</span>
                                                             <span className="text-sm text-gray-900 dark:text-white font-medium">{field}</span>
                                                         </div>
                                                         <button
                                                             onClick={() => handleFieldToggle(field)}
-                                                            className="p-1 text-gray-500 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all"
+                                                            className="p-1 text-gray-600 dark:text-gray-500 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all"
                                                         >
                                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

@@ -95,3 +95,21 @@ body {
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background-color: #475569;
 }
+
+/* Force text visibility in light mode */
+table th,
+table td {
+  color: var(--text-main);
+}
+
+/* Ensure input text is visible */
+input[type="text"],
+input[type="url"],
+input[type="number"],
+select {
+  color: var(--text-main) !important;
+}
+
+input::placeholder {
+  color: var(--text-muted) !important;
+}

@@ -93,9 +93,10 @@ function TableView({ data, fields, showArraysOnly }) {
                         setSearchTerm(e.target.value)
                         setCurrentPage(1)
                     }}
-                    className="flex-1 px-3 py-2 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="flex-1 px-3 py-2 bg-gray-50 dark:bg-dark-hover border border-gray-200 dark:border-dark-border rounded-lg text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+                    style={{ color: 'var(--text-main)' }}
                 />
-                <div className="text-sm text-gray-400">
+                <div className="text-sm text-gray-600 dark:text-gray-400">
                     {sortedData.length} of {tableData.length} items
                 </div>
             </div>
@@ -109,7 +110,8 @@ function TableView({ data, fields, showArraysOnly }) {
                                 <th
                                     key={field}
                                     onClick={() => handleSort(field)}
-                                    className="px-3 py-2 text-left font-medium text-gray-600 dark:text-gray-300 cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors"
+                                    className="px-3 py-2 text-left font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-hover transition-colors"
+                                    style={{ color: 'var(--text-main)' }}
                                 >
                                     <div className="flex items-center gap-2">
                                         <span className="truncate">{getFieldLabel(field)}</span>
@@ -130,7 +132,7 @@ function TableView({ data, fields, showArraysOnly }) {
                                 className="border-b border-gray-200 dark:border-dark-border/50 hover:bg-gray-50 dark:hover:bg-dark-hover/50 transition-colors"
                             >
                                 {fields.map(field => (
-                                    <td key={field} className="px-3 py-2 text-gray-700 dark:text-gray-200 truncate max-w-xs" title={String(row[field])}>
+                                    <td key={field} className="px-3 py-2 truncate max-w-xs font-medium" style={{ color: 'var(--text-main)' }} title={String(row[field])}>
                                         {formatValue(row[field])}
                                     </td>
                                 ))}
@@ -144,7 +146,7 @@ function TableView({ data, fields, showArraysOnly }) {
             {totalPages > 1 && (
                 <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center gap-2">
-                        <label className="text-gray-400">
+                        <label className="text-gray-700 dark:text-gray-400">
                             Items per page:
                         </label>
                         <select
@@ -170,7 +172,7 @@ function TableView({ data, fields, showArraysOnly }) {
                         >
                             Previous
                         </button>
-                        <span className="text-gray-400">
+                        <span className="text-gray-700 dark:text-gray-400">
                             Page {currentPage} of {totalPages}
                         </span>
                         <button

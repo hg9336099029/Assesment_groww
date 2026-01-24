@@ -87,6 +87,7 @@ function CardView({ data, fields }) {
         if (typeof numValue !== 'number') return isLight ? 'text-gray-900' : 'text-white'
 
         const keyLower = key.toLowerCase()
+
         const exactKey = key.toUpperCase()
 
         if (exactKey === 'DP' || exactKey === 'CP' || keyLower.includes('change') || keyLower.includes('percent')) {
@@ -148,8 +149,7 @@ function CardView({ data, fields }) {
                     if (isFirstField) {
                         return (
                             <div key={field} className="col-span-2 pb-4 border-b border-gray-200 dark:border-dark-border">
-                                <div className={`text-sm mb-1 uppercase tracking-wide ${isLight ? 'text-gray-700' : 'text-gray-400'
-                                    }`}>
+                                <div className="text-sm mb-1 uppercase tracking-wide font-semibold" style={{ color: 'var(--text-muted)' }}>
                                     {getLabel(field)}
                                 </div>
                                 <div className={`font-bold text-4xl ${getValueColor(value, field)}`}>
@@ -161,11 +161,10 @@ function CardView({ data, fields }) {
 
                     return (
                         <div key={field} className="">
-                            <div className={`text-xs mb-1 font-medium uppercase tracking-wide ${isLight ? 'text-gray-700' : 'text-gray-500'
-                                }`}>
+                            <div className="text-xs mb-1 font-semibold uppercase tracking-wide" style={{ color: 'var(--text-muted)' }}>
                                 {getLabel(field)}
                             </div>
-                            <div className={`font-semibold text-lg ${getValueColor(value, field)} truncate`} title={String(value)}>
+                            <div className={`font-semibold text-lg truncate ${getValueColor(value, field)}`} title={String(value)}>
                                 {formatValue(value, field)}
                             </div>
                         </div>

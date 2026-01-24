@@ -31,7 +31,7 @@ function WidgetHeader({ widget, onRefresh, onDelete, dragHandleProps }) {
                         {widget.name}
                     </h3>
                     {widget.lastUpdated && mounted && (
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-600 dark:text-gray-500">
                             Last updated: {formatRelativeTime(widget.lastUpdated)}
                         </p>
                     )}
@@ -74,7 +74,7 @@ function WidgetHeader({ widget, onRefresh, onDelete, dragHandleProps }) {
 
                 <button
                     onClick={onDelete}
-                    className="p-1.5 rounded hover:bg-red-900/30 text-gray-400 hover:text-red-400 transition-colors"
+                    className={`p-1.5 rounded hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors ${isLight ? 'text-gray-600 hover:text-red-600' : 'text-gray-400 hover:text-red-400'}`}
                     title="Delete widget"
                 >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
