@@ -17,11 +17,11 @@ function EmptyState() {
                     <span className="text-5xl opacity-50">📊</span>
                 </div>
 
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-3">
                     Build Your Finance Dashboard
                 </h2>
 
-                <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
+                <p className="text-base text-slate-600 dark:text-gray-400 mb-8">
                     Create custom widgets by connecting to any finance API. Track real-time data and build your personalized view.
                 </p>
 
